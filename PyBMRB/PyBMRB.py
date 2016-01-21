@@ -40,7 +40,15 @@ class PyBMRB(object):
         tmp_dat.append(tmp_dat2[1])
         tmp_dat.append(tmp_dat2[0])
         tmp_dat.reverse()
-        return tmp_dat
+        tmp_dat3=[i.split(",") for i in tmp_dat]
+        return tmp_dat3
+    
+    def header(self):
+        return self.data[0]
+    
+    def value(self):
+        return self.data[1:]
+        
         
 
 
@@ -56,7 +64,7 @@ class ApiError(Exception):
         return repr(self.message)
 
 if __name__=="__main__":
-    b=PyBMRB('1234,90')
+    b=PyBMRB('90')
     b.get_data()
-    for i in b.data:
-        print i
+    for i in b.value():
+        print "\t".join(i)
