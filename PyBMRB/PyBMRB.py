@@ -6,7 +6,8 @@ idlist can be list of ids
 '''
 
 import requests,re
-
+from operator import itemgetter
+from string import atoi
 class PyBMRB(object):
     '''
     API to fetch chemical shift data from BMRB database
@@ -41,15 +42,39 @@ class PyBMRB(object):
         tmp_dat.append(tmp_dat2[0])
         tmp_dat.reverse()
         tmp_dat3=[i.split(",") for i in tmp_dat]
-        return tmp_dat3
+        for i in tmp_dat3:
+            for j in range(len(i)):
+                i[j]=i[j].replace("\"","")
+                try:
+                    i[j]=atoi(i[j])
+                except ValueError:
+                    pass
+        tmp_dat4=sorted(tmp_dat3, key=itemgetter(0,10,3,1))
+        tmp_dat5=[[str(j) for j in i] for i in tmp_dat4]
+        return tmp_dat5
     
     def header(self):
-        return self.data[0]
+        return self.data[-1]
     
     def value(self):
-        return self.data[1:]
+        return self.data[:-1]
+    
+    def writeFile(self,path):
+        bmrbid=self.value()[0][0].replace("\"","")
+        f=open('%s/bmrb%s.txt'%(path,bmrbid),'w')
+        f.write("#%s\n"%("\t".join(self.header())))
+        for i in self.value():
+            if i[0].replace("\"","")==bmrbid:
+                f.write("%s\n"%("\t".join(i)))
+            else:
+                f.close()
+                bmrbid=i[0].replace("\"","")
+                f=open('%s/bmrb%s.txt'%(path,bmrbid),'w')
+                f.write("#%s\n"%("\t".join(self.header())))
+                f.write("%s\n"%("\t".join(i)))
+        f.close()
         
-        
+
 
 
 class ApiError(Exception):
@@ -64,7 +89,6 @@ class ApiError(Exception):
         return repr(self.message)
 
 if __name__=="__main__":
-    b=PyBMRB('90')
+    b=PyBMRB('90,18857')
     b.get_data()
-    for i in b.value():
-        print "\t".join(i)
+    b.writeFile('/home/kumaran/Desktop')
