@@ -1,0 +1,6 @@
+[submodule "py-mmcif"]
+	path = py-mmcif
+	url = https://github.com/rcsb/py-mmcif.git
+[submodule "PyNMRSTAR"]
+	path = PyNMRSTAR
+	url = https://github.com/uwbmrb/PyNMRSTAR.git
