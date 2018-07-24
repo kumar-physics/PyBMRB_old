@@ -41,7 +41,7 @@ class TestTranslator(TestCase):
 
     def test_load_map_file(self):
         self.Translator.load_map_file()
-        self.assertEqual([len(i) for i in self.Translator.tag_map], [258,258,258],
+        self.assertEqual([len(i) for i in self.Translator.tag_map], [258, 258, 258],
                          msg="There are 258 tags defined in the lib file")
 
     def test_load_nef_info(self):
@@ -52,15 +52,37 @@ class TestTranslator(TestCase):
     # def test_validate_file(self):
     #     self.fail()
     #
-    # def test_is_loop_empty(self):
-    #     self.fail()
-    #
-    # def test_get_sequence_from_nef(self):
-    #     self.fail()
-    #
-    # def test_get_sequence_from_nmrstar(self):
-    #     self.fail()
-    #
+    def test_is_loop_empty(self):
+        readable, content_type, stardata = self.Translator.read_input('test/loop_test.nef')
+        self.assertFalse(self.Translator.is_loop_empty(stardata, '_nef_sequence', content_type))
+        self.assertTrue(self.Translator.is_loop_empty(stardata, '_nef_chemical_shift', content_type))
+        readable, content_type, stardata = self.Translator.read_input('test/loop_test.str')
+        self.assertTrue(self.Translator.is_loop_empty(stardata, '_Chem_comp_assembly', content_type))
+        self.assertFalse(self.Translator.is_loop_empty(stardata, '_Atom_chem_shift', content_type))
+
+    def test_get_sequence_from_nef(self):
+        readable, content_type, nefdata = self.Translator.read_input('test/test_seq.nef')
+        seq_data = self.Translator.get_sequence_from_nef(nefdata)
+        self.assertEqual(len(seq_data), 3)
+        self.assertEqual(seq_data[0].keys(), ['A'])
+        self.assertEqual(len(seq_data[0]['A']), 214)
+        self.assertEqual(seq_data[1].keys(), ['B'])
+        self.assertEqual(len(seq_data[1]['B']), 5)
+        self.assertEqual(seq_data[2].keys(), ['C'])
+        self.assertEqual(len(seq_data[2]['C']), 5)
+
+
+    def test_get_sequence_from_nmrstar(self):
+        readable, content_type, stardata = self.Translator.read_input('test/test_seq.str')
+        seq_data = self.Translator.get_sequence_from_nmrstar(stardata)
+        self.assertEqual(len(seq_data), 3)
+        self.assertEqual(seq_data[0].keys(), ['1'])
+        self.assertEqual(len(seq_data[0]['1']), 214)
+        self.assertEqual(seq_data[1].keys(), ['2'])
+        self.assertEqual(len(seq_data[1]['2']), 5)
+        self.assertEqual(seq_data[2].keys(), ['3'])
+        self.assertEqual(len(seq_data[2]['3']), 5)
+
     # def test_get_saveframes_and_loops(self):
     #     self.fail()
     #
