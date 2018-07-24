@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56db477a-dcb9-4902-909a-429e6eb0a34a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Translator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/1nk2.str" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_translator.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_translator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,24 +14,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+            <state relative-caret-position="360">
+              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1532449808039" expanded="true" signature="13589:13597" ph="..." />
+                <marker date="1532460028686" expanded="true" signature="13589:13597" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_translator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_translator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+            <state relative-caret-position="285">
+              <caret line="49" column="86" selection-start-line="49" selection-start-column="86" selection-end-line="49" selection-end-column="86" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -66,8 +65,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test_translator.py" />
         <option value="$PROJECT_DIR$/Translator.py" />
+        <option value="$PROJECT_DIR$/test_translator.py" />
       </list>
     </option>
   </component>
@@ -146,34 +145,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 10h 58m 22s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 13m 11s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 10h 58m 32s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 14m 10s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 11h 00m 55s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 15m 05s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 11h 01m 34s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 15m 39s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 11h 01m 47s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 16m 25s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 11h 01m 57s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 17m 15s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 13h 52m 10s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 17m 49s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 13h 52m 28s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 18m 22s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 13h 53m 03s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 20m 37s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.18 at 13h 53m 28s.xml">
+    <history-entry file="Unittests_for_test_translator_TestTranslator - 2018.07.24 at 14h 21m 04s.xml">
       <configuration name="Unittests for test_translator.TestTranslator" configurationId="tests" />
     </history-entry>
   </component>
@@ -186,7 +185,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.77832514" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38017428" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -210,17 +209,7 @@
           <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1532449808039" expanded="true" signature="13589:13597" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1532460028686" expanded="true" signature="13589:13597" ph="..." />
           </folding>
         </state>
       </provider>
@@ -237,11 +226,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+        <state relative-caret-position="360">
+          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1532449808039" expanded="true" signature="13589:13597" ph="..." />
+            <marker date="1532460028686" expanded="true" signature="13589:13597" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="49" column="86" selection-start-line="49" selection-start-column="86" selection-end-line="49" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

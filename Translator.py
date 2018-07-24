@@ -34,7 +34,7 @@ __version__ = "v1.0"
 
 class Translator:
     map_file = scriptPath + '/lib/NEF_NMRSTAR_equivalence.csv'
-    nef_info_file = scriptPath + '/lib/NEF_mandatory,csv'
+    nef_info_file = scriptPath + '/lib/NEF_mandatory.csv'
     atom_nomenclature_file = scriptPath + '/lib/atomDict.json'
     amino_acids_code_file = scriptPath + '/lib/codeDict.json'
 
