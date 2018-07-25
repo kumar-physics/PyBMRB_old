@@ -35,6 +35,9 @@ __version__ = "v1.0"
 
 
 class Translator:
+    """
+    NEF to NMR-STAR translator
+    """
     map_file = scriptPath + '/lib/NEF_NMRSTAR_equivalence.csv'
     nef_info_file = scriptPath + '/lib/NEF_mandatory.csv'
     atom_nomenclature_file = scriptPath + '/lib/atomDict.json'
@@ -45,9 +48,22 @@ class Translator:
         self.code_dict = None
         self.tag_map = None
         self.nef_info = None
-        self.load_atom_dict()
-        self.load_code_dict()
-        self.load_map_file()
+        if not self.load_atom_dict():
+            err_msg = "Can't create atom nomenclature dictionary." \
+                      "File {} either missing or not readable".format(self.atom_nomenclature_file)
+            print (err_msg)
+        if not self.load_code_dict():
+            err_msg = "Can't create amio acids three letter to single letter dictionary. " \
+                      "File {} either missing or not readable".format(self.amino_acids_code_file)
+            print (err_msg)
+        if not self.load_map_file():
+            err_msg = "Can't create NEF to NMR-STAR mapping dictionary. " \
+                      "File {} either missing or not readable".format(self.map_file)
+            print(err_msg)
+        if not self.load_nef_info():
+            err_msg = "Can't create NEF mandatory tag list. " \
+                      "File {} either missing or not readable".format(self.nef_info_file)
+            print(err_msg)
         self.chains = None
 
     @staticmethod
@@ -96,17 +112,20 @@ class Translator:
         return status
 
     def load_code_dict(self):
+        status = False
         """Reads the codeDict.json file and creates a dictionary of residues and atoms"""
         try:
             with open(self.amino_acids_code_file, 'r') as code_file:
                 self.code_dict = json.loads(code_file.read())
+            status = True
         except IOError:
             err_msg = "codeDict.json file is missing! Check whether the file is inside {}".format(scriptPath + '/lib')
             print(err_msg)
+        return status
 
     def get_one_letter_code(self, res):
         """
-        Takes 3 letter code as input and return one letter code. If one letter code not defined in the dictionary
+        Takes 3 letter code as input and return one letter code. If one letter code is not defined in the dictionary
         then it will return ?
         :param res: 3 letter amino acid code
         :type res: str
@@ -123,6 +142,7 @@ class Translator:
         """
         Reads the NEF_NMRSTAR_equivalence.csv file and creates mapping as a list
         """
+        status = False
         try:
             with open(self.map_file, 'r') as csvfile:
                 spamreader = csv.reader(csvfile, delimiter=',')
@@ -131,16 +151,19 @@ class Translator:
                     if r[0][0] != '#':
                         map_data.append(r)
             self.tag_map = list(map(list, zip(*map_data)))
+            status = True
         except IOError:
             err_msg = "NEF-NMRSTAR_equivalence.csv file is missing! check the file is inside  {} ".format(
                 scriptPath + '/lib')
             print(err_msg)
             self.tag_map = []
+        return status
 
     def load_nef_info(self):
         """
         Reads mandatory tag information for NEF file
         """
+        status = False
         try:
             with open(self.nef_info_file, 'r') as csvfile:
                 spamreader = csv.reader(csvfile, delimiter=',')
@@ -149,10 +172,12 @@ class Translator:
                     if r[0][0] != '#':
                         map_data.append(r)
             self.nef_info = map_data
+            status = True
         except IOError:
             err_msg = "NEF_mandatory.csv file is missing! check the file is inside  {} ".format(scriptPath + '/lib')
             print(err_msg)
             self.nef_info = []
+        return status
 
     def validate_file(self, input_file):
         valid_cs_file = False

@@ -73,7 +73,6 @@ class TestTranslator(TestCase):
         self.assertEqual(seq_data[2].keys(), ['C'])
         self.assertEqual(len(seq_data[2]['C']), 5)
 
-
     def test_get_sequence_from_nmrstar(self):
         readable, content_type, stardata = self.Translator.read_input('test/test_seq.str')
         seq_data = self.Translator.get_sequence_from_nmrstar(stardata)
