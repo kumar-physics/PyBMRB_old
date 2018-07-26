@@ -1,0 +1,179 @@
+   save_nef_chemical_shift_list_25043_2
+#contains 2 loops with same category
+      _nef_chemical_shift_list.sf_category   nef_chemical_shift_list
+      _nef_chemical_shift_list.sf_framecode  nef_chemical_shift_list_25043_2
+
+      loop_
+         _nef_chemical_shift.chain_code
+         _nef_chemical_shift.sequence_code
+         _nef_chemical_shift.residue_name
+         _nef_chemical_shift.atom_name
+         _nef_chemical_shift.value
+         _nef_chemical_shift.value_uncertainty
+         _nef_chemical_shift.element
+         _nef_chemical_shift.isotope_number
+
+         B  1  A  C1'   91.148   0      C  13
+         B  1  A  C2    154.823  0      C  13
+         B  1  A  C2'   75.556   0      C  13
+         B  1  A  C3'   77.767   0      C  13
+         B  1  A  C4'   88.318   0      C  13
+         B  1  A  C8    142.845  0      C  13
+         B  1  A  H1'   5.927    0.003  H  1
+         B  1  A  H2    8.041    0.009  H  1
+         B  1  A  H2'   4.865    0      H  1
+         B  1  A  H3'   4.71     0      H  1
+         B  1  A  H4'   4.421    0      H  1
+         B  1  A  H5'   3.896    0.004  H  1
+         B  1  A  H5''  3.844    0.004  H  1
+         B  1  A  H8    8.13     0.015  H  1
+         B  2  C  C1'   91.512   0      C  13
+         B  2  C  C2'   77.133   0      C  13
+         B  2  C  C3'   77.516   0      C  13
+         B  2  C  C4'   86.398   0      C  13
+         B  2  C  C5    98.897   0      C  13
+         B  2  C  C5'   64.487   0.036  C  13
+         B  2  C  C6    143.849  0      C  13
+         B  2  C  H1'   5.923    0      H  1
+         B  2  C  H2'   4.385    0      H  1
+         B  2  C  H3'   4.755    0      H  1
+         B  2  C  H4'   4.368    0      H  1
+         B  2  C  H5    6.017    0      H  1
+         B  2  C  H5'   4.279    0      H  1
+         B  2  C  H5''  4.203    0      H  1
+         B  2  C  H6    7.924    0      H  1
+         B  3  A  C1'   89.69    0      C  13
+         B  3  A  C2    155.084  0      C  13
+         B  3  A  C2'   75.759   0      C  13
+         B  3  A  C3'   73.056   0      C  13
+         B  3  A  C4'   85.666   0      C  13
+         B  3  A  C5'   67.428   0.006  C  13
+         B  3  A  C8    141.881  0      C  13
+         B  3  A  H1'   5.98     0      H  1
+         B  3  A  H2    8.111    0      H  1
+         B  3  A  H2'   4.799    0      H  1
+         B  3  A  H3'   4.528    0      H  1
+         B  3  A  H4'   4.56     0      H  1
+         B  3  A  H5'   4.242    0      H  1
+         B  3  A  H5''  4.11     0      H  1
+         B  3  A  H8    8.279    0      H  1
+         B  4  C  C1'   91.615   0      C  13
+         B  4  C  C2'   77.052   0      C  13
+         B  4  C  C3'   77.635   0      C  13
+         B  4  C  C4'   84.285   0      C  13
+         B  4  C  C5    98.625   0      C  13
+         B  4  C  C5'   66.168   0      C  13
+         B  4  C  C6    142.447  0      C  13
+         B  4  C  H1'   5.723    0.002  H  1
+         B  4  C  H2'   4.144    0      H  1
+         B  4  C  H3'   4.477    0      H  1
+         B  4  C  H4'   4.324    0      H  1
+         B  4  C  H5    5.837    0      H  1
+         B  4  C  H5'   4.062    0      H  1
+         B  4  C  H5''  4.019    0      H  1
+         B  4  C  H6    7.532    0      H  1
+         B  5  A  C1'   90.101   0      C  13
+         B  5  A  C2    155.503  0      C  13
+         B  5  A  C2'   76.824   0      C  13
+         B  5  A  C3'   72.748   0      C  13
+         B  5  A  C4'   86.085   0      C  13
+         B  5  A  C5'   68.055   0.003  C  13
+         B  5  A  C8    142.16   0      C  13
+         B  5  A  H1'   6.04     0      H  1
+         B  5  A  H2    8.152    0.009  H  1
+         B  5  A  H2'   4.663    0      H  1
+         B  5  A  H3'   4.44     0      H  1
+         B  5  A  H4'   4.325    0      H  1
+         B  5  A  H5'   4.196    0      H  1
+         B  5  A  H5''  4.105    0      H  1
+         B  5  A  H8    8.307    0      H  1
+      stop_
+
+    loop_
+         _nef_chemical_shift.chain_code
+         _nef_chemical_shift.sequence_code
+         _nef_chemical_shift.residue_name
+         _nef_chemical_shift.atom_name
+         _nef_chemical_shift.value
+         _nef_chemical_shift.value_uncertainty
+         _nef_chemical_shift.element
+         _nef_chemical_shift.isotope_number
+
+         B  1  A  C1'   91.148   0      C  13
+         B  1  A  C2    154.823  0      C  13
+         B  1  A  C2'   75.556   0      C  13
+         B  1  A  C3'   77.767   0      C  13
+         B  1  A  C4'   88.318   0      C  13
+         B  1  A  C8    142.845  0      C  13
+         B  1  A  H1'   5.927    0.003  H  1
+         B  1  A  H2    8.041    0.009  H  1
+         B  1  A  H2'   4.865    0      H  1
+         B  1  A  H3'   4.71     0      H  1
+         B  1  A  H4'   4.421    0      H  1
+         B  1  A  H5'   3.896    0.004  H  1
+         B  1  A  H5''  3.844    0.004  H  1
+         B  1  A  H8    8.13     0.015  H  1
+         B  2  C  C1'   91.512   0      C  13
+         B  2  C  C2'   77.133   0      C  13
+         B  2  C  C3'   77.516   0      C  13
+         B  2  C  C4'   86.398   0      C  13
+         B  2  C  C5    98.897   0      C  13
+         B  2  C  C5'   64.487   0.036  C  13
+         B  2  C  C6    143.849  0      C  13
+         B  2  C  H1'   5.923    0      H  1
+         B  2  C  H2'   4.385    0      H  1
+         B  2  C  H3'   4.755    0      H  1
+         B  2  C  H4'   4.368    0      H  1
+         B  2  C  H5    6.017    0      H  1
+         B  2  C  H5'   4.279    0      H  1
+         B  2  C  H5''  4.203    0      H  1
+         B  2  C  H6    7.924    0      H  1
+         B  3  A  C1'   89.69    0      C  13
+         B  3  A  C2    155.084  0      C  13
+         B  3  A  C2'   75.759   0      C  13
+         B  3  A  C3'   73.056   0      C  13
+         B  3  A  C4'   85.666   0      C  13
+         B  3  A  C5'   67.428   0.006  C  13
+         B  3  A  C8    141.881  0      C  13
+         B  3  A  H1'   5.98     0      H  1
+         B  3  A  H2    8.111    0      H  1
+         B  3  A  H2'   4.799    0      H  1
+         B  3  A  H3'   4.528    0      H  1
+         B  3  A  H4'   4.56     0      H  1
+         B  3  A  H5'   4.242    0      H  1
+         B  3  A  H5''  4.11     0      H  1
+         B  3  A  H8    8.279    0      H  1
+         B  4  C  C1'   91.615   0      C  13
+         B  4  C  C2'   77.052   0      C  13
+         B  4  C  C3'   77.635   0      C  13
+         B  4  C  C4'   84.285   0      C  13
+         B  4  C  C5    98.625   0      C  13
+         B  4  C  C5'   66.168   0      C  13
+         B  4  C  C6    142.447  0      C  13
+         B  4  C  H1'   5.723    0.002  H  1
+         B  4  C  H2'   4.144    0      H  1
+         B  4  C  H3'   4.477    0      H  1
+         B  4  C  H4'   4.324    0      H  1
+         B  4  C  H5    5.837    0      H  1
+         B  4  C  H5'   4.062    0      H  1
+         B  4  C  H5''  4.019    0      H  1
+         B  4  C  H6    7.532    0      H  1
+         B  5  A  C1'   90.101   0      C  13
+         B  5  A  C2    155.503  0      C  13
+         B  5  A  C2'   76.824   0      C  13
+         B  5  A  C3'   72.748   0      C  13
+         B  5  A  C4'   86.085   0      C  13
+         B  5  A  C5'   68.055   0.003  C  13
+         B  5  A  C8    142.16   0      C  13
+         B  5  A  H1'   6.04     0      H  1
+         B  5  A  H2    8.152    0.009  H  1
+         B  5  A  H2'   4.663    0      H  1
+         B  5  A  H3'   4.44     0      H  1
+         B  5  A  H4'   4.325    0      H  1
+         B  5  A  H5'   4.196    0      H  1
+         B  5  A  H5''  4.105    0      H  1
+         B  5  A  H8    8.307    0      H  1
+      stop_
+   save_
+
+

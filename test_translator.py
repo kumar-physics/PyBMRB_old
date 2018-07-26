@@ -10,21 +10,42 @@ class TestTranslator(TestCase):
         self.Translator = Translator()
 
     def test_read_input(self):
-        file_readble, content_type, data = self.Translator.read_input("test/1nk2.nef")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_entry.nef")
         self.assertTrue(file_readble)
-        self.assertEqual(content_type, "Entry")
-        file_readble, content_type, data = self.Translator.read_input("test/1nk2.str")
+        self.assertAlmostEqual(content_type, "Entry")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_saveframe.nef")
         self.assertTrue(file_readble)
-        self.assertEqual(content_type, "Entry")
-        file_readble, content_type, data = self.Translator.read_input("test/unit_cs_sf.nef")
+        self.assertAlmostEqual(content_type, "Saveframe")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_loop.nef")
         self.assertTrue(file_readble)
-        self.assertEqual(content_type, "Saveframe")
-        file_readble, content_type, data = self.Translator.read_input("test/unit_cs_sf.str")
+        self.assertAlmostEqual(content_type, "Loop")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_entry.str")
         self.assertTrue(file_readble)
-        self.assertEqual(content_type, "Saveframe")
-        file_readble, content_type, data = self.Translator.read_input("test/unit_cs_sf2.str")
+        self.assertAlmostEqual(content_type, "Entry")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_saveframe.str")
+        self.assertTrue(file_readble)
+        self.assertAlmostEqual(content_type, "Saveframe")
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_loop.str")
+        self.assertTrue(file_readble)
+        self.assertAlmostEqual(content_type, "Loop")
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_entry.nef")
         self.assertFalse(file_readble)
-        self.assertEqual(content_type, None)
+        self.assertIsNone(content_type)
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_saveframe.nef")
+        self.assertFalse(file_readble)
+        self.assertIsNone(content_type)
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_loop.nef")
+        self.assertFalse(file_readble)
+        self.assertIsNone(content_type)
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_entry.str")
+        self.assertFalse(file_readble)
+        self.assertIsNone(content_type)
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_saveframe.str")
+        self.assertFalse(file_readble)
+        self.assertIsNone(content_type)
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_loop.str")
+        self.assertFalse(file_readble)
+        self.assertIsNone(content_type)
 
     def test_load_atom_dict(self):
         self.Translator.load_atom_dict()
@@ -40,6 +61,7 @@ class TestTranslator(TestCase):
         self.assertEqual(self.Translator.get_one_letter_code('ALA'), 'A')
         self.assertEqual(self.Translator.get_one_letter_code('val'), 'V')
         self.assertEqual(self.Translator.get_one_letter_code('mno'), '?')
+        self.assertEqual(self.Translator.get_one_letter_code('DA'), 'A')
 
     def test_load_map_file(self):
         self.Translator.load_map_file()
@@ -51,9 +73,36 @@ class TestTranslator(TestCase):
         self.assertEqual(len(self.Translator.nef_info), 270,
                          msg="There are 270 mandatory tags for NEF defined in the file")
 
-    # def test_validate_file(self):
-    #     self.fail()
-    #
+    def test_validate_file(self):
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_good_entry.nef')
+        self.assertEqual(file_type, 'NEF')
+        self.assertTrue(cs_info)
+        self.assertTrue(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_good_entry.str')
+        self.assertEqual(file_type, 'NMR-STAR')
+        self.assertTrue(cs_info)
+        self.assertTrue(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_good_loop.str')
+        self.assertEqual(file_type, 'NMR-STAR')
+        self.assertTrue(cs_info)
+        self.assertFalse(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_good_loop.nef')
+        self.assertEqual(file_type, 'NEF')
+        self.assertTrue(cs_info)
+        self.assertFalse(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_bad_entry.str')
+        self.assertIsNone(file_type)
+        self.assertFalse(cs_info)
+        self.assertFalse(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/test_bad_saveframe.nef')
+        self.assertIsNone(file_type)
+        self.assertFalse(cs_info)
+        self.assertFalse(rt_info)
+        file_type, cs_info, rt_info = self.Translator.validate_file('test/loop_test.nef')
+        self.assertEqual(file_type, 'NEF')
+        self.assertFalse(cs_info)
+        self.assertTrue(rt_info)
+
     def test_is_loop_empty(self):
         readable, content_type, stardata = self.Translator.read_input('test/loop_test.nef')
         self.assertFalse(self.Translator.is_loop_empty(stardata, '_nef_sequence', content_type))
@@ -84,24 +133,77 @@ class TestTranslator(TestCase):
         self.assertEqual(seq_data[2].keys(), ['3'])
         self.assertEqual(len(seq_data[2]['3']), 5)
 
-    # def test_get_saveframes_and_loops(self):
-    #     self.fail()
-    #
-    # def test_validate_atom_nomenclature(self):
-    #     self.fail()
-    #
-    # def test_get_nmrstar_tag(self):
-    #     self.fail()
-    #
-    # def test_get_nef_tag(self):
-    #     self.fail()
-    #
-    # def test_get_nmrstar_atom(self):
-    #     self.fail()
-    #
-    # def test_get_nmrstar_loop_tags(self):
-    #     self.fail()
-    #
+    def test_get_saveframes_and_loops(self):
+        readable, content_type, stardata = self.Translator.read_input('test/test_seq.str')
+        sf_list, lp_list = self.Translator.get_saveframes_and_loops(stardata, content_type)
+        self.assertEqual(sf_list, ['entry_information', 'assembly', 'assigned_chemical_shifts',
+                                   'assigned_chemical_shifts', 'assigned_chemical_shifts',
+                                   'general_distance_constraints', 'general_distance_constraints',
+                                   'torsion_angle_constraints'])
+        self.assertEqual(lp_list, ['_Software_applied_methods', '_Chem_comp_assembly', '_Atom_chem_shift',
+                                   '_Atom_chem_shift', '_Atom_chem_shift', '_Gen_dist_constraint',
+                                   '_Gen_dist_constraint', '_Torsion_angle_constraint'])
+        readable, content_type, stardata = self.Translator.read_input('test/test_good_saveframe.str')
+        sf_list, lp_list = self.Translator.get_saveframes_and_loops(stardata, content_type)
+        self.assertEqual(sf_list, [])
+        self.assertEqual(lp_list, ['_Atom_chem_shift'])
+
+    def test_validate_atom_nomenclature(self):
+        file_readble, content_type, data = self.Translator.read_input("test/test_bad_nomenclature.str")
+        non_standard_list = self.Translator.validate_atom_nomenclature(data)
+        self.assertEqual(len(non_standard_list), 17)
+        file_readble, content_type, data = self.Translator.read_input("test/test_good_entry.str")
+        non_standard_list = self.Translator.validate_atom_nomenclature(data)
+        self.assertEqual(len(non_standard_list), 0)
+
+    def test_get_nmrstar_tag(self):
+        self.assertEqual(self.Translator.get_nmrstar_tag('_nef_sequence.sequence_code'),
+                         ['_Chem_comp_assembly.Auth_seq_ID', '_Chem_comp_assembly.Comp_index_ID'])
+        self.assertEqual(self.Translator.get_nmrstar_tag('_nef_chemical_shift.value'),
+                         ['_Atom_chem_shift.Val', '_Atom_chem_shift.Val'])
+        self.assertEqual(self.Translator.get_nmrstar_tag('nef_nmr_meta_data'),
+                         ['entry_information', 'entry_information'])
+        self.assertIsNone(self.Translator.get_nmrstar_tag('some_unknown_tag'))
+
+    def test_get_nef_tag(self):
+        self.assertEqual(self.Translator.get_nef_tag('_Chem_comp_assembly.Auth_seq_ID'),
+                         '_nef_sequence.sequence_code')
+        self.assertEqual(self.Translator.get_nef_tag('_Atom_chem_shift.Val'),
+                         '_nef_chemical_shift.value')
+        self.assertEqual(self.Translator.get_nef_tag('entry_information'),
+                         'nef_nmr_meta_data')
+        self.assertIsNone(self.Translator.get_nef_tag('some_unknown_tag'))
+
+    def test_get_nmrstar_atom(self):
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('CYS', 'HB%')
+        self.assertEqual(atom, 'HB')
+        self.assertEqual(atom_list, ['HB2', 'HB3'])
+        self.assertEqual(ambiguity_code,1)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('TRP', 'CE%')
+        self.assertEqual(atom, 'CE')
+        self.assertEqual(atom_list, ['CE2', 'CE3'])
+        self.assertEqual(ambiguity_code, 1)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('TRP', 'CEX')
+        self.assertEqual(atom, 'CE')
+        self.assertEqual(atom_list, ['CE2'])
+        self.assertEqual(ambiguity_code, 2)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('TRP', 'CEy')
+        self.assertEqual(atom, 'CE')
+        self.assertEqual(atom_list, ['CE3'])
+        self.assertEqual(ambiguity_code, 2)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('LEU', 'HDY%')
+        self.assertEqual(atom, 'HD')
+        self.assertEqual(atom_list, ['HD21', 'HD22', 'HD23'])
+        self.assertEqual(ambiguity_code, 2)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('LEU', 'HD1%')
+        self.assertEqual(atom, 'HD1')
+        self.assertEqual(atom_list, ['HD11', 'HD12', 'HD13'])
+        self.assertEqual(ambiguity_code, 1)
+        atom, atom_list, ambiguity_code = self.Translator.get_nmrstar_atom('LEU', 'HD*')
+        self.assertEqual(atom, 'HD')
+        self.assertEqual(atom_list, ['HD11', 'HD12', 'HD13', 'HD21', 'HD22', 'HD23'])
+        self.assertEqual(ambiguity_code, 1)
+
     # def test_time_stamp(self):
     #     self.fail()
     #

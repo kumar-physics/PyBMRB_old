@@ -92,11 +92,11 @@ class Translator:
                 except ValueError as err:
                     in_data = None
                     err_msg = "File contains no valid saveframe or loop. Invalid NMRSTAR file :{}".format(err)
-                    print(err_msg)
+                    #print(err_msg)
         except IOError as err:
             in_data = None
             err_msg = "File not found:{}".format(err)
-            print(err_msg)
+            #print(err_msg)
         return file_readable, content_type, in_data
 
     def load_atom_dict(self):
@@ -204,7 +204,7 @@ class Translator:
                 file_type = "NMR-STAR"
         else:
             err_msg = "Problem with input file"
-            print(err_msg)
+            #print(err_msg)
         return file_type, valid_cs_file, valid_re_file
 
     @staticmethod
@@ -396,12 +396,18 @@ class Translator:
         return ns
 
     def get_nmrstar_tag(self, tag):
-        n = self.tag_map[0].index(tag)
-        return [self.tag_map[1][n], self.tag_map[2][n]]
+        try:
+            n = self.tag_map[0].index(tag)
+            return [self.tag_map[1][n], self.tag_map[2][n]]
+        except ValueError:
+            return None
 
     def get_nef_tag(self, tag):
-        n = self.tag_map[1].index(tag)
-        return self.tag_map[0][n]
+        try:
+            n = self.tag_map[1].index(tag)
+            return self.tag_map[0][n]
+        except ValueError:
+            return None
 
     def get_nmrstar_atom(self, res, nef_atom):
         atom = None
@@ -476,7 +482,7 @@ class Translator:
                 atom = "H"
         return [atom, atom_list, ambiguity_code]
 
-    def get_nmrstar_loop_tags(self, neflooptags):
+    def __get_nmrstar_loop_tags(self, neflooptags):
         aut_tag = []
         nt = []
         for t in neflooptags:
@@ -732,7 +738,7 @@ class Translator:
                         if loop.category == "_nef_chemical_shift":
                             cs_list += 1
                         lp = pynmrstar.Loop.from_scratch()
-                        lp_cols = self.get_nmrstar_loop_tags(loop.get_tag_names())
+                        lp_cols = self.__get_nmrstar_loop_tags(loop.get_tag_names())
                         for t in lp_cols:
                             lp.add_tag(t)
                         # print (loop.category,lp.category,lp.get_tag_names(),loop.get_tag_names())
@@ -807,7 +813,7 @@ class Translator:
                     if loop.category == "_nef_chemical_shift":
                         cs_list += 1
                     lp = pynmrstar.Loop.from_scratch()
-                    lp_cols = self.get_nmrstar_loop_tags(loop.get_tag_names())
+                    lp_cols = self.__get_nmrstar_loop_tags(loop.get_tag_names())
                     for t in lp_cols:
                         lp.add_tag(t)
                     # print (loop.category,lp.category,lp.get_tag_names(),loop.get_tag_names())

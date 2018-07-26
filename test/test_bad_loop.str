@@ -1,0 +1,92 @@
+# columns and tags don't match
+   loop_
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Ambiguity_set_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+     3   1   A   C1'    C   13   91.257    0       1   .   C   1   A   C1'    3    
+     3   1   A   C2     C   13   155.162   0       1   .   C   1   A   C2     3    
+     3   1   A   C2'    C   13   75.261    0       1   .   C   1   A   C2'    3    
+     3   1   A   C3'    C   13   77.056    0       1   .   C   1   A   C3'    3    
+     3   1   A   C4'    C   13   87.617    0       1   .   C   1   A   C4'    3    
+     3   1   A   C5'    C   13   66.531    0.01    1   .   C   1   A   C5'    3    
+     3   1   A   C8     C   13   143.139   0       1   .   C   1   A   C8     3    
+     3   1   A   H1'    H   1    5.909     0       1   .   C   1   A   H1'    3    
+     3   1   A   H2     H   1    8.135     0       1   .   C   1   A   H2     3    
+     3   1   A   H2'    H   1    4.879     0       1   .   C   1   A   H2'    3    
+     3   1   A   H3'    H   1    4.725     0       1   .   C   1   A   H3'    3    
+     3   1   A   H4'    H   1    4.411     0       1   .   C   1   A   H4'    3    
+     3   1   A   H5'    H   1    3.807     0       1   .   C   1   A   H5'    3    
+     3   1   A   H5''   H   1    3.907     0       1   .   C   1   A   H5''   3    
+     3   1   A   H8     H   1    8.29      0       1   .   C   1   A   H8     3    
+     3   2   C   C1'    C   13   91.183    0       1   .   C   2   C   C1'    3    
+     3   2   C   C2'    C   13   76.336    0       1   .   C   2   C   C2'    3    
+     3   2   C   C3'    C   13   72.514    0       1   .   C   2   C   C3'    3    
+     3   2   C   C4'    C   13   87.181    0       1   .   C   2   C   C4'    3    
+     3   2   C   C5     C   13   98.913    0       1   .   C   2   C   C5     3    
+     3   2   C   C5'    C   13   67.29     0.007   1   .   C   2   C   C5'    3    
+     3   2   C   C6     C   13   143.319   0       1   .   C   2   C   C6     3    
+     3   2   C   H1'    H   1    5.871     0       1   .   C   2   C   H1'    3    
+     3   2   C   H2'    H   1    4.328     0       1   .   C   2   C   H2'    3    
+     3   2   C   H3'    H   1    4.404     0       1   .   C   2   C   H3'    3    
+     3   2   C   H4'    H   1    4.433     0       1   .   C   2   C   H4'    3    
+     3   2   C   H5     H   1    5.888     0       1   .   C   2   C   H5     3    
+     3   2   C   H5'    H   1    4.126     0       1   .   C   2   C   H5'    3    
+     3   2   C   H5''   H   1    4.233     0       1   .   C   2   C   H5''   3    
+     3   2   C   H6     H   1    7.732     0       1   .   C   2   C   H6     3    
+     3   3   A   C1'    C   13   91.367    0       1   .   C   3   A   C1'    3    
+     3   3   A   C2     C   13   155       0       1   .   C   3   A   C2     3    
+     3   3   A   C2'    C   13   75.587    0       1   .   C   3   A   C2'    3    
+     3   3   A   C3'    C   13   74.819    0       1   .   C   3   A   C3'    3    
+     3   3   A   C4'    C   13   86.01     0       1   .   C   3   A   C4'    3    
+     3   3   A   C5'    C   13   66.848    0       1   .   C   3   A   C5'    3    
+     3   3   A   C8     C   13   141.76    0       1   .   C   3   A   C8     3    
+     3   3   A   H1'    H   1    5.975     0       1   .   C   3   A   H1'    3    
+     3   3   A   H2     H   1    8.145     0       1   .   C   3   A   H2     3    
+     3   3   A   H2'    H   1    4.805     0       1   .   C   3   A   H2'    3    
+     3   3   A   H3'    H   1    4.513     0       1   .   C   3   A   H3'    3    
+     3   3   A   H4'    H   1    4.313     0       1   .   C   3   A   H4'    3    
+     3   3   A   H5'    H   1    4.024     0       1   .   C   3   A   H5'    3    
+     3   3   A   H5''   H   1    4.101     0.004   1   .   C   3   A   H5''   3    
+     3   3   A   H8     H   1    8.301     0       1   .   C   3   A   H8     3    
+     3   4   C   C1'    C   13   92.1      0       1   .   C   4   C   C1'    3    
+     3   4   C   C2'    C   13   76.374    0       1   .   C   4   C   C2'    3    
+     3   4   C   C3'    C   13   75.556    0       1   .   C   4   C   C3'    3    
+     3   4   C   C4'    C   13   86.737    0       1   .   C   4   C   C4'    3    
+     3   4   C   C5     C   13   98.595    0       1   .   C   4   C   C5     3    
+     3   4   C   C6     C   13   142.622   0       1   .   C   4   C   C6     3    
+     3   4   C   H1'    H   1    5.614     0       1   .   C   4   C   H1'    3    
+     3   4   C   H2'    H   1    4.157     0       1   .   C   4   C   H2'    3    
+     3   4   C   H3'    H   1    4.832     0       1   .   C   4   C   H3'    3    
+     3   4   C   H4'    H   1    4.441     0       1   .   C   4   C   H4'    3    
+     3   4   C   H5     H   1    5.805     0       1   .   C   4   C   H5     3    
+     3   4   C   H6     H   1    7.624     0       1   .   C   4   C   H6     3    
+     3   5   A   C1'    C   13   90.067    0       1   .   C   5   A   C1'    3    
+     3   5   A   C2     C   13   155.244   0       1   .   C   5   A   C2     3    
+     3   5   A   C2'    C   13   77.159    0       1   .   C   5   A   C2'    3    
+     3   5   A   C3'    C   13   72.59     0       1   .   C   5   A   C3'    3    
+     3   5   A   C4'    C   13   86.008    0       1   .   C   5   A   C4'    3    
+     3   5   A   C5'    C   13   67.521    0.003   1   .   C   5   A   C5'    3    
+     3   5   A   C8     C   13   141.924   0       1   .   C   5   A   C8     3    
+     3   5   A   H1'    H   1    5.946     0       1   .   C   5   A   H1'    3    
+     3   5   A   H2     H   1    8.146     0       1   .   C   5   A   H2     3    
+     3   5   A   H2'    H   1    4.538     0       1   .   C   5   A   H2'    3    
+     3   5   A   H3'    H   1    4.376     0       1   .   C   5   A   H3'    3    
+     3   5   A   H4'    H   1    4.271     0       1   .   C   5   A   H4'    3    
+     3   5   A   H5'    H   1    4.061     0       1   .   C   5   A   H5'    3    
+     3   5   A   H5''   H   1    4.163     0       1   .   C   5   A   H5''   3    
+     3   5   A   H8     H   1    8.265     0       1   .   C   5   A   H8     3    
+
+   stop_
+
