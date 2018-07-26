@@ -17,7 +17,7 @@ PY3 = (sys.version_info[0] == 3)
 (scriptPath, scriptName) = ntpath.split(os.path.realpath(__file__))
 
 try:
-    import pynmrstar
+    import pynmrsta
 
 except ImportError as e:
     sys.path.append(scriptPath + '/PyNMRSTAR')
