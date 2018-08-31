@@ -100,7 +100,7 @@ class Translator:
         return file_readable, content_type, in_data
 
     def load_atom_dict(self):
-        """Reads the atomDict.json file and creates a dictionary of residues and atoms"""
+        """Reads the atomDict.json file in lib folder and creates a dictionary of residues and atoms"""
         status = False
         try:
             with open(self.atom_nomenclature_file, 'r') as atom_file:
