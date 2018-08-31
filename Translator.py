@@ -615,7 +615,7 @@ class Translator:
 
     @staticmethod
     def get_identifier(tag_list):
-        out_list = [] 
+        out_list = []
         for j in range(1, 16):
             out = [None] * 2
             chk_string = re.compile('\S+.chain_code_{}'.format(j))
