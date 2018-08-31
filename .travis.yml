@@ -1,4 +1,7 @@
 language: python
+
+install:
+  - sudo pip install future
 python:
     - "2.6"
     - "2.7"

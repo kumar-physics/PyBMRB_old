@@ -5,7 +5,7 @@ from __future__ import print_function
 import sys
 import os
 import ntpath
-from string import atoi
+
 
 PY3 = (sys.version_info[0] == 3)
 
@@ -85,7 +85,7 @@ class RestraintValidation:
         ifh.close()
         c0 = self.cif_data[0]
         atom_site = c0.getObj('atom_site')
-        self.max_models = atoi(atom_site.getValue('pdbx_PDB_model_num', -1))
+        self.max_models = int(atom_site.getValue('pdbx_PDB_model_num', -1))
         if self.max_models == 1:
             print('Coordinate file has only one model')
         elif self.max_models == 0:
