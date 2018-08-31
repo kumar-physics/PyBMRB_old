@@ -204,23 +204,8 @@ class TestTranslator(TestCase):
         self.assertEqual(atom_list, ['HD11', 'HD12', 'HD13', 'HD21', 'HD22', 'HD23'])
         self.assertEqual(ambiguity_code, 1)
 
-    # def test_time_stamp(self):
-    #     self.fail()
-    #
-    # def test_translate_row(self):
-    #     self.fail()
-    #
-    # def test_translate_seq_row(self):
-    #     self.fail()
-    #
-    # def test_translate_cs_row(self):
-    #     self.fail()
-    #
-    # def test_get_identifier(self):
-    #     self.fail()
-    #
-    # def test_translate_restraint_row(self):
-    #     self.fail()
-    #
-    # def test_nef_to_nmrstar(self):
-    #     self.fail()
+
+
+    def test_nef_to_nmrstar(self):
+        status, jdump = self.Translator.nef_to_nmrstar('test/test_translation.nef')
+        self.assertTrue(status)

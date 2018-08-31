@@ -507,7 +507,6 @@ class Translator:
         return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
     def translate_row(self, f_tags, t_tags, row_data):
-        # print (f_tags)
         out_row = []
         res_list = self.get_identifier(f_tags)
         # print (res_list)
@@ -616,7 +615,7 @@ class Translator:
 
     @staticmethod
     def get_identifier(tag_list):
-        out_list = []  # type: List[]
+        out_list = [] 
         for j in range(1, 16):
             out = [None] * 2
             chk_string = re.compile('\S+.chain_code_{}'.format(j))
@@ -859,3 +858,8 @@ class Translator:
             is_done = False
             error.append('Input file not readable')
         return [is_done, json.dumps({'INFO': info, 'WARNING': warning, 'ERROR': error})]
+
+if __name__ == "__main__":
+    fname = sys.argv[1]
+    p=Translator()
+    p.nef_to_nmrstar(fname)
