@@ -2,6 +2,7 @@ language: python
 
 install:
   - pip install future
+  - pip install pynmrstar
 python:
     - "2.7"
     - "3.4"

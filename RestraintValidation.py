@@ -56,7 +56,7 @@ class RestraintValidation:
         self.read_starfile()
         self.ang_rest = None
         self.get_angle_restraints()
-       
+
 
 
     @staticmethod
