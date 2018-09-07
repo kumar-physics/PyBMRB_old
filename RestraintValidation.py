@@ -12,7 +12,7 @@ PY3 = (sys.version_info[0] == 3)
 (scriptPath, scriptName) = ntpath.split(os.path.realpath(__file__))
 
 try:
-    import pynmrstar
+    import pynmrsta
 
 except ImportError as e:
     sys.path.append(scriptPath + '/PyNMRSTAR')
@@ -46,6 +46,7 @@ __version__ = "v1.0"
 class RestraintValidation:
 
     def __init__(self):
+        print (pynmrstar.__version__)
         self.cfile = 'test/data/1nk2.cif'
         self.rfile = 'test/data/1nk2.str'
         self.cif_data = None
