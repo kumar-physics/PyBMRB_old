@@ -115,22 +115,22 @@ class TestTranslator(TestCase):
         readable, content_type, nefdata = self.Translator.read_input('test/test_seq.nef')
         seq_data = self.Translator.get_sequence_from_nef(nefdata)
         self.assertEqual(len(seq_data), 3)
-        self.assertEqual(seq_data[0].keys(), ['A'])
+        self.assertEqual(list(seq_data[0].keys()), ['A'])
         self.assertEqual(len(seq_data[0]['A']), 214)
-        self.assertEqual(seq_data[1].keys(), ['B'])
+        self.assertEqual(list(seq_data[1].keys()), ['B'])
         self.assertEqual(len(seq_data[1]['B']), 5)
-        self.assertEqual(seq_data[2].keys(), ['C'])
+        self.assertEqual(list(seq_data[2].keys()), ['C'])
         self.assertEqual(len(seq_data[2]['C']), 5)
 
     def test_get_sequence_from_nmrstar(self):
         readable, content_type, stardata = self.Translator.read_input('test/test_seq.str')
         seq_data = self.Translator.get_sequence_from_nmrstar(stardata)
         self.assertEqual(len(seq_data), 3)
-        self.assertEqual(seq_data[0].keys(), ['1'])
+        self.assertEqual(list(seq_data[0].keys()), ['1'])
         self.assertEqual(len(seq_data[0]['1']), 214)
-        self.assertEqual(seq_data[1].keys(), ['2'])
+        self.assertEqual(list(seq_data[1].keys()), ['2'])
         self.assertEqual(len(seq_data[1]['2']), 5)
-        self.assertEqual(seq_data[2].keys(), ['3'])
+        self.assertEqual(list(seq_data[2].keys()), ['3'])
         self.assertEqual(len(seq_data[2]['3']), 5)
 
     def test_get_saveframes_and_loops(self):
