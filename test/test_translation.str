@@ -12,7 +12,7 @@ save_nef_nmr_meta_data
    _Entry.Source_data_format_version    1.1
    _Entry.Generated_software_name       CcpNmr
    _Entry.Generated_software_version    3.0.b1
-   _Entry.Generated_date                '2018-10-18 16:13:39'
+   _Entry.Generated_date                '2018-10-18 16:21:08'
    _Entry.UUID                          CcpNmr-2017-02-06T19:05:27.538611-595663902
    _Entry.Related_coordinate_file_name  .
 
@@ -2584,44 +2584,6 @@ save_nef_chemical_shift_list_25043_1
 
 save_
 
-     ###################################
-     #  Assigned chemical shift lists  #
-     ###################################
-
-###################################################################
-#       Chemical Shift Ambiguity Index Value Definitions          #
-#                                                                 #
-# The values other than 1 are used for those atoms with different #
-# chemical shifts that cannot be assigned to stereospecific atoms #
-# or to specific residues or chains.                              #
-#                                                                 #
-#   Index Value            Definition                             #
-#                                                                 #
-#      1             Unique (including isolated methyl protons,   #
-#                         geminal atoms, and geminal methyl       #
-#                         groups with identical chemical shifts)  #
-#                         (e.g. ILE HD11, HD12, HD13 protons)     #
-#      2             Ambiguity of geminal atoms or geminal methyl #
-#                         proton groups (e.g. ASP HB2 and HB3     #
-#                         protons, LEU CD1 and CD2 carbons, or    #
-#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
-#                         HD23 methyl protons)                    #
-#      3             Aromatic atoms on opposite sides of          #
-#                         symmetrical rings (e.g. TYR HE1 and HE2 #
-#                         protons)                                #
-#      4             Intraresidue ambiguities (e.g. LYS HG and    #
-#                         HD protons or TRP HZ2 and HZ3 protons)  #
-#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
-#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
-#                         in monomer 1 and ASP 31 CA in monomer 2 #
-#                         of an asymmetrical homodimer, duplex    #
-#                         DNA assignments, or other assignments   #
-#                         that may apply to atoms in one or more  #
-#                         molecule in the molecular assembly)     #
-#      9             Ambiguous, specific ambiguity not defined    #
-#                                                                 #
-###################################################################
-
 save_nef_chemical_shift_list_25043_2
    _Assigned_chem_shift_list.Sf_category   assigned_chemical_shifts
    _Assigned_chem_shift_list.Sf_framecode  nef_chemical_shift_list_25043_2
@@ -2721,44 +2683,6 @@ save_nef_chemical_shift_list_25043_2
    stop_
 
 save_
-
-     ###################################
-     #  Assigned chemical shift lists  #
-     ###################################
-
-###################################################################
-#       Chemical Shift Ambiguity Index Value Definitions          #
-#                                                                 #
-# The values other than 1 are used for those atoms with different #
-# chemical shifts that cannot be assigned to stereospecific atoms #
-# or to specific residues or chains.                              #
-#                                                                 #
-#   Index Value            Definition                             #
-#                                                                 #
-#      1             Unique (including isolated methyl protons,   #
-#                         geminal atoms, and geminal methyl       #
-#                         groups with identical chemical shifts)  #
-#                         (e.g. ILE HD11, HD12, HD13 protons)     #
-#      2             Ambiguity of geminal atoms or geminal methyl #
-#                         proton groups (e.g. ASP HB2 and HB3     #
-#                         protons, LEU CD1 and CD2 carbons, or    #
-#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
-#                         HD23 methyl protons)                    #
-#      3             Aromatic atoms on opposite sides of          #
-#                         symmetrical rings (e.g. TYR HE1 and HE2 #
-#                         protons)                                #
-#      4             Intraresidue ambiguities (e.g. LYS HG and    #
-#                         HD protons or TRP HZ2 and HZ3 protons)  #
-#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
-#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
-#                         in monomer 1 and ASP 31 CA in monomer 2 #
-#                         of an asymmetrical homodimer, duplex    #
-#                         DNA assignments, or other assignments   #
-#                         that may apply to atoms in one or more  #
-#                         molecule in the molecular assembly)     #
-#      9             Ambiguous, specific ambiguity not defined    #
-#                                                                 #
-###################################################################
 
 save_nef_chemical_shift_list_25043_3
    _Assigned_chem_shift_list.Sf_category   assigned_chemical_shifts

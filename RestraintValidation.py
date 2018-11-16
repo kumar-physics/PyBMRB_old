@@ -182,6 +182,8 @@ class RestraintValidation:
 
     @staticmethod
     def get_dihedral_angle(c1, c2, c3, c4):
+        # For phi of ith residue provide i-1 C, i N, i CA, i C
+        # For psi of ith residue provide i N, i CA, i C, i+1  N
 
         """ Calculates the dihedral angle from the given four coordinate values.
         Each coordinate is an array of x,y,z. Returns angle in degrees"""
