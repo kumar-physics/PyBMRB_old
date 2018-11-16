@@ -294,19 +294,27 @@ class Cyrange:
                         print (vmin_idx,vmin_value,cluster_list)
                         atm_list = [j for j in atm_list if j not in vmin_idx]
                     else:
-                        v = self.v_value(atm_list, dmat)
-                        vmin_idx = min(v, key=v.get)
-                        vmin_value = v[vmin_idx]
+                        if len(atm_list) > 1:
+                            v = self.v_value(atm_list, dmat)
+                            vmin_idx = min(v, key=v.get)
+                            vmin_value = v[vmin_idx]
+                        else:
+                            vmin_idx =('X')
+                            vmin_value = 99999.999
                         vc = {}
-                        for atm in atm_list:
-                            for c in cluster_list:
-                                x=deepcopy(c)
-                                x.append(atm)
-                                v2 = self.v_value(x,dmat)
-                                vv=[v2[k] for k in v2.keys()]
-                                vc[tuple(x)] = variance(vv)
-                        vcmin_idx = min(vc, key=vc.get)
-                        vcmin_value = vc[vcmin_idx]
+                        if len(atm_list) > 0:
+                            for atm in atm_list:
+                                for c in cluster_list:
+                                    x=deepcopy(c)
+                                    x.append(atm)
+                                    v2 = self.v_value(x,dmat)
+                                    vv=[v2[k] for k in v2.keys()]
+                                    vc[tuple(x)] = variance(vv)
+                            vcmin_idx = min(vc, key=vc.get)
+                            vcmin_value = vc[vcmin_idx]
+                        else:
+                            vcmin_idx =('X')
+                            vcmin_value = 9999.99
                         vvc = {}
                         if len(cluster_list)>1:
                             for c1 in cluster_list:
