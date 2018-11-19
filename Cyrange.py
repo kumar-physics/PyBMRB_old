@@ -80,7 +80,100 @@ class Cyrange:
         self.scutoff = self.calculate_scutoff(self.op_dict)
         self.core_atoms = self.calculate_core_atoms(self.op_dict,self.scutoff,self.seq_dict)
         self.d_matrix=self.distance_matrix()
+        self.centroid_shifted, self.mean_coord = self.cal_mean_coord(['N', 'CA', 'C'])
         self.cluster_atoms()
+        #print (self.cal_rmsd(self.core_atoms,0))
+
+
+    def cal_mean_coord(self,atm_list):
+        x = []
+        c=[]
+        for model in range(self.max_models):
+            y=[]
+            c1=[]
+            for k in self.coord_data[model].keys():
+                if k[3] in atm_list:
+                    c1.append(k)
+                    y.append(self.coord_data[model][k])
+            x.append(numpy.array(y))
+            c.append(c1)
+        m = numpy.empty(numpy.shape(x[0]))
+
+        for p in x:
+            pc = self.centroid(p)
+            p-=pc
+
+        for p in x:
+            P1 = deepcopy(p)
+            #pc = self.centroid(P1)
+            #P1 -= pc
+            m += P1
+        m = (1.0 / len(x)) * m
+        mean_coord = {}
+        for i in range(len(m)):
+            mean_coord[c[0][i]] = m[i]
+        centroid_coord = []
+        for i in range(len(x)):
+            d = {}
+            for j in range(len(x[i])):
+                d[c[i][j]] = x[i][j]
+            centroid_coord.append(d)
+        return centroid_coord, mean_coord
+
+
+
+
+
+
+
+    def cal_rmsd(self,atmlist,ent_id):
+        #print (self.seq_dict)
+        alist = []
+        for atm in atmlist:
+            #print (atm)
+            alist.append(('{}'.format(atm),'{}'.format(ent_id+1),'{}'.format(self.seq_dict[ent_id][int(atm)]),'N'))
+            alist.append(('{}'.format(atm), '{}'.format(ent_id+1), '{}'.format(self.seq_dict[ent_id][int(atm)]), 'CA'))
+            alist.append(('{}'.format(atm), '{}'.format(ent_id+1), '{}'.format(self.seq_dict[ent_id][int(atm)]), 'C'))
+
+        x=[]
+        for model in range(self.max_models):
+            y=[]
+            for atm in alist:
+                y.append(self.centroid_shifted[model][atm])
+            x.append(numpy.array(y))
+        m = []
+        for atm in alist:
+            m.append(self.mean_coord[atm])
+
+
+        # m = numpy.empty(numpy.shape(x[0]))
+        # print (atmlist,len(m))
+        # for p in x:
+        #     P1 = deepcopy(p)
+        #     pc = self.centroid(P1)
+        #     P1-=pc
+        #     m+=P1
+        # m=(1.0/len(x))*m
+        r = 0.0
+        for p in x:
+            #P1 = deepcopy(p)
+            #pc = self.centroid(P1)
+            #P1 -= pc
+            r+=self.kabsch(m,p)
+        return (1.0/(len(x)))*r
+
+
+    def calculate_a(self,cluster_list,ent_id):
+        r=0.0
+        n=0
+        for c in cluster_list:
+            n+=len(c)
+            r += self.cal_rmsd(c,ent_id)
+        return (1.0/n)*r
+
+
+
+
 
     def get_models(self):
         coord = []
@@ -260,9 +353,9 @@ class Cyrange:
         for i in atom_list:
             for j in atom_list:
                 if i != j and self.not_within_cluster(i,j,clust_list):
-                    s = 0
+                    s = 0.0
                     for k in range(len(distance_matrix)):
-                        s += (distance_matrix[k][(i, j)] - mean_distance[(i, j)]) ** 2
+                        s += (distance_matrix[k][(i, j)] - mean_distance[(i, j)]) ** 2.0
                     v[(i, j)] = (1.0 / len(distance_matrix)) * s
         return v
 
@@ -277,6 +370,11 @@ class Cyrange:
                     flg = False
         return flg
 
+    @staticmethod
+    def order_seq(seqlist):
+        seqint = [int(i) for i in seqlist]
+        return ['{}'.format(i) for i in sorted(seqint)]
+
     def cluster_atoms(self):
         for ent in self.d_matrix:
             if ent is not None:
@@ -284,23 +382,27 @@ class Cyrange:
                 atm_list = [i[0] for i in self.core_atoms[self.d_matrix.index(ent)]]
                 cluster_list=[]
                 n = len(atm_list)
+                a=[]
+                ni = []
                 for i in range(n):
-                    print (cluster_list)
+                    #print (len(cluster_list),[len(o) for o in cluster_list])
                     if len(cluster_list) == 0:
                         v = self.v_value(atm_list,dmat)
                         vmin_idx = min(v, key=v.get)
                         vmin_value = v[vmin_idx]
                         cluster_list.append([j for j in vmin_idx])
-                        print (vmin_idx,vmin_value,cluster_list)
+                        #print (vmin_idx,vmin_value,cluster_list)
                         atm_list = [j for j in atm_list if j not in vmin_idx]
                     else:
+                        a.append(self.calculate_a(cluster_list,self.d_matrix.index(ent)))
+                        ni.append(len(cluster_list)+len(atm_list))
                         if len(atm_list) > 1:
                             v = self.v_value(atm_list, dmat)
                             vmin_idx = min(v, key=v.get)
                             vmin_value = v[vmin_idx]
                         else:
                             vmin_idx =('X')
-                            vmin_value = 99999.999
+                            vmin_value = 9999999.999
                         vc = {}
                         if len(atm_list) > 0:
                             for atm in atm_list:
@@ -314,7 +416,7 @@ class Cyrange:
                             vcmin_value = vc[vcmin_idx]
                         else:
                             vcmin_idx =('X')
-                            vcmin_value = 9999.99
+                            vcmin_value = 9999999.999
                         vvc = {}
                         if len(cluster_list)>1:
                             for c1 in cluster_list:
@@ -328,24 +430,30 @@ class Cyrange:
                             vvcmin_value = vvc[vvcmin_idx]
                         else:
                             vvcmin_idx = ('x')
-                            vvcmin_value = 9999.999
+                            vvcmin_value = 9999999.999
                         if vmin_value < vcmin_value and vmin_value < vvcmin_value:
-                            cluster_list.append([j for j in vmin_idx])
+                            cluster_list.append([j for j in self.order_seq(vmin_idx)])
                             atm_list = [j for j in atm_list if j not in vmin_idx]
                         elif vcmin_value < vmin_value and vcmin_value < vvcmin_value:
                             for k in vcmin_idx:
                                 for k2 in cluster_list:
                                     if k in k2:
                                         cluster_list.remove(k2)
-                            cluster_list.append([j for j in vcmin_idx])
+                            cluster_list.append([j for j in self.order_seq(vcmin_idx)])
                             atm_list = [j for j in atm_list if j not in vcmin_idx]
                         elif vvcmin_value < vmin_value and vvcmin_value < vcmin_value:
                             for k in vvcmin_idx:
                                 for k2 in cluster_list:
                                     if k in k2:
                                         cluster_list.remove(k2)
-                            cluster_list.append([j for j in vvcmin_idx])
+                            cluster_list.append([j for j in self.order_seq(vvcmin_idx)])
                             atm_list = [j for j in atm_list if j not in vvcmin_idx]
+                print (n,len(a),len(ni))
+                for i in range(n-1):
+                    amin = min(a)
+                    amax = max(a)
+                    p = ((n-1)*(a[i]-amin)/(amax-amin))+ni[i]
+                    print (1,p)
 
 
 
@@ -410,10 +518,97 @@ class Cyrange:
         seqid = colnames.index('label_seq_id')
         co = {}
         for dat in atom_site.getRowList():
-            if int(dat[modelid]) == modelID:
+            if int(dat[modelid]) == modelID: #and dat[asymid]=='polypeptide(L)':
                 co[(dat[seqid], dat[asymid], dat[compid], dat[atomid])] = numpy.array(
                     [float(dat[xid]), float(dat[yid]), float(dat[zid])])
         return co
 
+    def fit(self,P, Q):
+        """ Varies the distance between P and Q, and optimizes rotation for each step
+        until a minimum is found.
+        """
+        step_size = P.max(0)
+        threshold = step_size * 1e-9
+        rmsd_best = self.kabsch(P, Q)
+        while True:
+            for i in range(3):
+                temp = numpy.zeros(3)
+                temp[i] = step_size[i]
+                rmsd_new = self.kabsch(P + temp, Q)
+                if rmsd_new < rmsd_best:
+                    rmsd_best = rmsd_new
+                    P[:, i] += step_size[i]
+                else:
+                    rmsd_new = self.kabsch(P - temp, Q)
+                    if rmsd_new < rmsd_best:
+                        rmsd_best = rmsd_new
+                        P[:, i] -= step_size[i]
+                    else:
+                        step_size[i] /= 2
+            if (step_size < threshold).all():
+                break
+        return rmsd_best
+
+    def kabsch(self,P, Q):
+        """ The Kabsch algorithm
+
+        http://en.wikipedia.org/wiki/Kabsch_algorithm
+
+        The algorithm starts with two sets of paired points P and Q.
+        P and Q should already be centered on top of each other.
+
+        Each vector set is represented as an NxD matrix, where D is the
+        the dimension of the space.
+
+        The algorithm works in three steps:
+        - a translation of P and Q
+        - the computation of a covariance matrix C
+        - computation of the optimal rotation matrix U
+
+        The optimal rotation matrix U is then used to
+        rotate P unto Q so the RMSD can be caculated
+        from a straight forward fashion.
+
+        """
+
+        # Computation of the covariance matrix
+        C = numpy.dot(numpy.transpose(P), Q)
+
+        # Computation of the optimal rotation matrix
+        # This can be done using singular value decomposition (SVD)
+        # Getting the sign of the det(V)*(W) to decide
+        # whether we need to correct our rotation matrix to ensure a
+        # right-handed coordinate system.
+        # And finally calculating the optimal rotation matrix U
+        # see http://en.wikipedia.org/wiki/Kabsch_algorithm
+        V, S, W = numpy.linalg.svd(C)
+        d = (numpy.linalg.det(V) * numpy.linalg.det(W)) < 0.0
+
+        if (d):
+            S[-1] = -S[-1]
+            V[:, -1] = -V[:, -1]
+
+        # Create Rotation matrix U
+        U = numpy.dot(V, W)
+
+        # Rotate P
+        P = numpy.dot(P, U)
+        return self.rmsd(P, Q)
+    @staticmethod
+    def centroid(X):
+        """ Calculate the centroid from a vectorset X """
+        C = sum(X) / len(X)
+        return C
+    @staticmethod
+    def rmsd(V, W):
+        """ Calculate Root-mean-square deviation from two sets of vectors V and W.
+        """
+        D = len(V[0])
+        N = len(V)
+        rmsd = 0.0
+        for v, w in zip(V, W):
+            rmsd += sum([(v[i] - w[i]) ** 2.0 for i in range(D)])
+        return numpy.sqrt(rmsd / N)
+
 if __name__ == '__main__':
-    Cyrange('test/data/1cfc.cif')
+    Cyrange('test/data/2mtv.cif')
